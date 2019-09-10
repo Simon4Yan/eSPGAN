@@ -111,17 +111,13 @@ class Metric_Net(nn.Module):
 
     def __init__(self, dim=64):
         super(Metric_Net, self).__init__()
-        # self.conv0 = nn.Conv2d(3, dim, 4, 2)
-        # self.relu0 = nn.LeakyReLU(0.2)
-        # self.pool0 = nn.MaxPool2d((2, 2), stride=2)
-        # self.conv_relu_pool1 =
+
         self.ls = nn.Sequential(
             nn.Conv2d(3, dim, 4, 2, 1),
             nn.LeakyReLU(0.2),
             nn.MaxPool2d(2, stride=2),
             Conv_Relu_Pool(dim, dim*2),
             Conv_Relu_Pool(dim*2, dim*4),
-            #Conv_Relu_Pool(dim*4, dim*8)
         )
 		
         self.fc1 = nn.Linear(2048, dim*2, bias=None)
@@ -132,7 +128,6 @@ class Metric_Net(nn.Module):
     def forward(self, x):
         x = self.ls(x)
         x = x.view(x.size(0), -1)
-        #print(x.size())
         x = self.fc1(x)
         x = self.relu1(x)
         x = self.drop(x)
@@ -140,7 +135,6 @@ class Metric_Net(nn.Module):
         x = F.normalize(x, p=2, dim =1, eps=1e-12)
         return x
 		
-	
 	
 # Custom Contrastive Loss
 class ContrastiveLoss(torch.nn.Module):

@@ -129,10 +129,6 @@ class Metric_Net(nn.Module):
 
     def __init__(self, dim=64):
         super(Metric_Net, self).__init__()
-        # self.conv0 = nn.Conv2d(3, dim, 4, 2)
-        # self.relu0 = nn.LeakyReLU(0.2)
-        # self.pool0 = nn.MaxPool2d((2, 2), stride=2)
-        # self.conv_relu_pool1 =
         self.ls = nn.Sequential(
             nn.Conv2d(3, dim, 4, 2, 1),
             nn.LeakyReLU(0.2),
