@@ -1,7 +1,7 @@
 # eSPGAN
 We extend the SPGAN (our prior work in CVPR2018) to an end-to-end version, named eSPGAN.
 
-Here, we provides pytorch version of SPGAN. Please try this code. This code is based on https://github.com/LynnHo/CycleGAN-Tensorflow-2, thanks for this project.
+Here, we provide the pytorch version of SPGAN. Please try this code. This code is based on https://github.com/LynnHo/CycleGAN-Tensorflow-2, thanks for this project.
 
 Thanks for your attention.
 
