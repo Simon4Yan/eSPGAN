@@ -8,7 +8,6 @@ import torch.nn.functional as F
 import torch.nn as nn
 import torch
 from torchvision import models
-import models.model_imagenet
 
 
 norm = functools.partial(nn.InstanceNorm2d, affine=False)
@@ -141,44 +140,8 @@ class Metric_Net(nn.Module):
         x = F.normalize(x, p=2, dim =1, eps=1e-12)
         return x
 		
-class ft_net0(nn.Module):
-
-    def __init__(self, class_num=10):
-        super(ft_net0, self).__init__()
-        self.model = models.resnet18(pretrained=True)
-
-        # avg pooling to global pooling
-        self.model.avgpool = nn.AdaptiveAvgPool2d((1,1))
-        #self.model.avgpool = nn.Sequential()		
-        self.model.fc = nn.Sequential()
-        self.fc1 = nn.Linear(512, 128, bias=False)
-        '''
-        classifier = []
-        classifier += [nn.Linear(num_bottleneck, class_num)]
-        classifier = nn.Sequential(*classifier)
-        classifier.apply(weights_init_classifier)
-        self.classifier = classifier
-        '''
-    def forward(self, x):
-        x = self.model(x)
-        print(x.size())
-        #print(88888888888888888888)
-        x = self.fc1(x)
-        x = F.normalize(x, p=2, dim =1, eps=1e-12)
-        return x
-		
-class alexnet(nn.Module):
-    def __init__(self):
-        super(alexnet, self).__init__()
-        self.model = model_imagenet.alex(pretrained=True)		
-        self.model.fc = nn.Sequential( 
-            nn.Linear(4096, 256, bias=False),
-        )
-    def forward(self, x):
-        x = self.model(x)
-        #x = self.fc(x)
-        x = F.normalize(x, p=2, dim =1, eps=1e-12)
-        return x		
+	
+	
 # Custom Contrastive Loss
 class ContrastiveLoss(torch.nn.Module):
     """
@@ -198,5 +161,3 @@ class ContrastiveLoss(torch.nn.Module):
  
 
         return loss_contrastive
-
-
