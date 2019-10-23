@@ -5,6 +5,8 @@ Here, we provide the pytorch version of SPGAN. Please try this code. This code i
 
 (By the way, I haven't used this code for almost a year. Thus, if you meet any question, please contact me, thanks!)
 
+Now, my friend [Xiao](http://xiaoxiaosun.com/) conducted experiment on the Synthetic data [PersonX](https://github.com/sxzrt/Instructions-of-the-PersonX-dataset), and she found that SPGAN is helpful. Specifically, Synthetic-->Market result is almost 52% in rank-1 accuracy!
+
 Thanks for your attention.
 
 Weijian
