@@ -1,6 +1,6 @@
 # eSPGAN
 
-We use SPGAN and eSPGAN as baselines for [4th visda challenge](http://ai.bu.edu/visda-2020). We will release all the codes and datasets when challenges begins.
+We use SPGAN and eSPGAN as baselines for the [4th visda challenge](http://ai.bu.edu/visda-2020). We will release all the codes and datasets when challenges begins.
 
 We extend the SPGAN (our prior work in CVPR2018) to an end-to-end version, named eSPGAN.
 
