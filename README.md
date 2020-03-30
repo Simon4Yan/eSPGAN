@@ -1,5 +1,5 @@
 # eSPGAN
-We have updated the code of eSPGAN. To use it, you need to 1) train a source model, and 2) run espgan.py to learn an adapted model. For the first step, I use the modified codes in [Here](https://github.com/Simon4Yan/Person_reID_baseline_pytorch). You could learn your own model, and be sure to change the corresponding parts of our codes ('ft_net' in models/models.py).
+We have updated the code of eSPGAN. To use it, you need to 1) train a source model, and 2) run espgan.py to learn an adapted model. For the first step, I use the modified codes (train_IDE_plus.py) in [Here](https://github.com/Simon4Yan/Person_reID_baseline_pytorch). You could learn your own model, and be sure to change the corresponding parts of our codes ('ft_net' in models/models.py).
 
 Here, we also provide the PyTorch version of SPGAN. Please try this code. This code is based on https://github.com/LynnHo/CycleGAN-Tensorflow-2, thanks to their project.
 You could write your own data loader to use your datasets. Of course, I notice the provided data loader is not perfect, you could use yours. 
