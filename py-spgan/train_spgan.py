@@ -12,7 +12,7 @@ import torchvision.transforms as transforms
 import utils
 from PIL import Image
 from utils.logger import Logger
-#from torch.optim import lr_scheduler
+
 
 """ gpu """
 # Device configuration
@@ -78,11 +78,6 @@ ga_optimizer = torch.optim.Adam(Ga.parameters(), lr=lr, betas=(0.5, 0.999))
 gb_optimizer = torch.optim.Adam(Gb.parameters(), lr=lr, betas=(0.5, 0.999))
 gb_optimizer = torch.optim.Adam(Gb.parameters(), lr=lr, betas=(0.5, 0.999))
 me_optimizer = torch.optim.Adam(Me.parameters(), lr=lr, betas=(0.5, 0.999))
-
-# SGD for me network
-#me_optimizer = torch.optim.SGD(Me.parameters(), lr=0.01, momentum=0.9, weight_decay=5e-4, nesterov=True)
-# Decay LR by a factor of 0.1 every 2 epochs
-#exp_lr_scheduler = lr_scheduler.StepLR(me_optimizer, step_size=3, gamma=0.1)
 
 """ load checkpoint """
 ckpt_dir = './checkpoints/spgan_last'

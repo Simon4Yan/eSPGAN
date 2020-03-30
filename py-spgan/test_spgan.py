@@ -13,6 +13,7 @@ import torchvision.transforms as transforms
 import torchvision
 import utils.utils as utils
 
+
 """params"""
 lr = 0.0002
 crop_size_w = 128
@@ -23,7 +24,6 @@ Ga = models.Generator()
 Gb = models.Generator()
 transform = transforms.Compose([
     transforms.Resize((crop_size_h, crop_size_w)),
- #   transforms.RandomCrop(crop_size),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 ])
@@ -41,15 +41,14 @@ filenamea.sort()
 dirpathb, b, filenameb = os.walk('../Cycledata/market2duke/link_testB/0').next()
 filenameb.sort()
 
-save_dir_a = './market/bounding_box_train_spgan_sgd/'
-save_dir_b = './duke/bounding_box_train_spgan_sgd/'
+save_dir_a = './market/bounding_box_train_spgan/'
+save_dir_b = './duke/bounding_box_train_spgan/'
 utils.mkdir([save_dir_a, save_dir_b])
 
 Ga = Ga.cuda()
 Gb = Gb.cuda()
 
 i = 0
-
 for  a_test in (a_test_loader):
     Gb.eval()
     a_test = a_test[0]
@@ -71,7 +70,3 @@ for  b_test in (b_test_loader):
         torchvision.utils.save_image((b_out.data[j] + 1) / 2.0, save_dir_b + filenameb[i+j], padding=0)
     i+=batch_size
     if i%128 ==0: print(i)
-
-
-
-
