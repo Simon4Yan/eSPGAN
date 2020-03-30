@@ -1,14 +1,12 @@
 # eSPGAN
+We have updated the code of eSPGAN. To use it, you need to 1) train a source model, and 2) run espgan.py to learn an adapted model. For the first step, I use the modified codes in [Here](https://github.com/Simon4Yan/Person_reID_baseline_pytorch). You could learn your own model, and be sure to change the corresponding parts of our codes ('ft_net' in models/models.py).
 
-We use SPGAN and eSPGAN as baselines for the [4th visda challenge](http://ai.bu.edu/visda-2020). We will release all the codes and datasets when challenges begins.
+Here, we also provide the PyTorch version of SPGAN. Please try this code. This code is based on https://github.com/LynnHo/CycleGAN-Tensorflow-2, thanks to their project.
+You could write your own data loader to use your datasets. Of course, I notice the provided data loader is not perfect, you could use yours. 
 
-We extend the SPGAN (our prior work in CVPR2018) to an end-to-end version, named eSPGAN.
+Recently, my friend [Xiao](http://xiaoxiaosun.com/) conducted an experiment on the Synthetic data [PersonX](https://github.com/sxzrt/Instructions-of-the-PersonX-dataset), and she found that SPGAN is helpful. Specifically, Synthetic-->Market result is almost 52% in rank-1 accuracy! Moreover, eSPGAN can achieve 56% in rank-1 accuracy.
 
-Here, we provide the pytorch version of SPGAN. Please try this code. This code is based on https://github.com/LynnHo/CycleGAN-Tensorflow-2, thanks for their project.
-
-Recently, my friend [Xiao](http://xiaoxiaosun.com/) conducted experiment on the Synthetic data [PersonX](https://github.com/sxzrt/Instructions-of-the-PersonX-dataset), and she found that SPGAN is helpful. Specifically, Synthetic-->Market result is almost 52% in rank-1 accuracy! 
-
-Now, she is doing experiment with eSPGAN. We are working closely to study the domain adpatation problem in person re-identification.
+Now, we use SPGAN and eSPGAN as baselines for the [4th visda challenge](http://ai.bu.edu/visda-2020). We will release all the codes and datasets when the challenge begins. We will provide clean and easy dataset loaders to read our datasets. Both SPGAN and eSPGAN will also be included to support our challenge (and in a more convenient way). 
 
 Thanks for your attention!
 

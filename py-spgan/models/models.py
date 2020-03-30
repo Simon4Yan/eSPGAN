@@ -10,8 +10,7 @@ import torch
 from torch.nn import init
 from torchvision import models
 norm = functools.partial(nn.InstanceNorm2d, affine=False)
-	
-	
+		
 def weights_init_kaiming(m):
     classname = m.__class__.__name__
     # print(classname)
@@ -129,6 +128,10 @@ class Metric_Net(nn.Module):
 
     def __init__(self, dim=64):
         super(Metric_Net, self).__init__()
+        # self.conv0 = nn.Conv2d(3, dim, 4, 2)
+        # self.relu0 = nn.LeakyReLU(0.2)
+        # self.pool0 = nn.MaxPool2d((2, 2), stride=2)
+        # self.conv_relu_pool1 =
         self.ls = nn.Sequential(
             nn.Conv2d(3, dim, 4, 2, 1),
             nn.LeakyReLU(0.2),
@@ -151,7 +154,38 @@ class Metric_Net(nn.Module):
         x = self.fc2(x)
         x = F.normalize(x, p=2, dim =1, eps=1e-12)
         return x
-      
+    
+class ft_net(nn.Module):
+
+    def __init__(self, class_num):
+        super(ft_net, self).__init__()
+        model_ft = models.resnet50(pretrained=True)
+        # avg pooling to global pooling
+        model_ft.avgpool = nn.AdaptiveAvgPool2d((1,1))
+
+        num_ftrs = model_ft.fc.in_features
+        add_block = []
+        num_bottleneck = 512
+        add_block += [nn.Linear(num_ftrs, num_bottleneck)]
+        add_block += [nn.BatchNorm1d(num_bottleneck)]
+        add_block += [nn.LeakyReLU(0.1)]
+        add_block += [nn.Dropout(p=0.5)]  #default dropout rate 0.5
+        add_block = nn.Sequential(*add_block)
+        add_block.apply(weights_init_kaiming)
+        model_ft.fc = add_block
+        self.model = model_ft
+
+        classifier = []
+        classifier += [nn.Linear(num_bottleneck, class_num)]
+        classifier = nn.Sequential(*classifier)
+        classifier.apply(weights_init_classifier)
+        self.classifier = classifier
+
+    def forward(self, x):
+        x = self.model(x)
+        x = self.classifier(x)
+        return x
+    
 class ContrastiveLoss(torch.nn.Module):
     """
     Contrastive loss function.
@@ -169,4 +203,3 @@ class ContrastiveLoss(torch.nn.Module):
  
 
         return loss_contrastive
-        
