@@ -1,3 +1,5 @@
+# VisDA2020: 4th Visual Domain Adaptation Challenge
+We have released training and validation sets in https://github.com/Simon4Yan/VisDA2020. Welcome to VisDA2020!
 # eSPGAN
 We have updated the code of eSPGAN. To use it, you need to 1) train a source model, and 2) run espgan.py to learn an adapted model. For the first step, I use the modified codes (train_IDE_plus.py) in [Here](https://github.com/Simon4Yan/Person_reID_baseline_pytorch). You could learn your own model, and be sure to change the corresponding parts of our codes ('ft_net' in models/models.py).
 
